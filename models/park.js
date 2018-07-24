@@ -10,22 +10,43 @@ Park.prototype.addDinosaur = function(dinosaur){
 
 Park.prototype.removeDinosaur = function(dinosaur){
   let i = this.dinosaurs.indexOf(dinosaur);
-  this.dinosaurs.splice(i, 1);
+  if (i !== -1) {
+  this.dinosaurs.splice(i, 1);}
 }
 
 
-module.exports = Park;
+// Park.prototype.findMostPopularDinosaur = function(){
+//   popDino = this.dinosaurs[0];
+//   for (dinosaur of this.dinosaurs){
+//     if(dinosaur.guestsAttractedPerDay > popDino.guestsAttractedPerDay){
+//      popDino = dinosaur;
+//     }
+//     return popDino;
+//   }
+// };
 
-//
-// A park must have:
-//
-// A name
-// A ticket price
-// A collection of dinosaurs
-// A park must be able to:
-//
-// Add a dinosaur to its collection of dinosaurs
-// Remove a dinosaur from its collection of dinosaurs
-// Find the dinosaur that attracts the most visitors
-// Find all dinosaurs of a particular species
-// Remove all dinosaurs of a particular species
+Park.prototype.findParticularSpecies = function(species){
+  sameSpeciesArray = this.dinosaurs.filter(dinosaur =>
+  dinosaur.species == species);
+  return sameSpeciesArray;
+};
+
+
+Park.prototype.removeDinosaurSpecies = function(species){
+  for (dinosaur of this.dinosaurs){
+  if(dinosaur.species === species){
+    // this.removeDinosaur(dinosaur);
+    let i = this.dinosaurs.indexOf(dinosaur);
+    this.dinosaurs.splice(i, 1);
+  }
+}
+}
+
+// Park.prototype.removeDinosaurSpecies = function(species){
+//   for (dinosaur of this.dinosaurs){
+//     this.dinosaurs.splice(species, 1);
+//   }
+// }
+
+
+module.exports = Park;
